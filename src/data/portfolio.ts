@@ -4,13 +4,13 @@ export const portfolioData: Portfolio = {
   hero: {
     name: 'Roberto Filho',
     headline:
-      'Engenheiro de Software / Backend (microservicos, Go, arquitetura hexagonal)',
+      'Engenheiro de Software / Backend (microserviços, Go, arquitetura hexagonal)',
     location: 'Itabuna, Bahia - Brasil',
     contacts: [
       {
         label: 'E-mail',
-        value: 'zferraz.rf@gmail.com',
-        href: 'mailto:zferraz.rf@gmail.com'
+        value: 'contatorobertobff@gmail.com',
+        href: 'mailto:contatorobertobff@gmail.com'
       },
       {
         label: 'Telefone',
@@ -36,22 +36,22 @@ export const portfolioData: Portfolio = {
   },
   about: {
     summary:
-      'Profissional com foco em backend, desenvolvimento de microservicos e arquitetura hexagonal (Ports & Adapters). Experiencia com mensageria, bancos relacionais e nao relacionais, Docker, observabilidade, otimização de performance e solucoes real-time com WebSocket/WebRTC.'
+      'Profissional com foco em backend, desenvolvimento de microserviços e arquitetura hexagonal (Ports & Adapters). Experiência com mensageria, bancos relacionais e não relacionais, Docker, observabilidade, otimização de performance e soluções real-time com WebSocket/WebRTC.'
   },
   experiences: [
     {
       role: 'Engenheiro de Software',
-      company: 'Autonomo',
+      company: 'Autônomo',
       location: 'Itabuna, Bahia, Brasil',
       period: 'jul/2025 - o momento',
       featured: true,
       highlights: [
         'Modalidade: no local',
-        'Desenvolvimento de APIs REST e microservicos em Golang',
-        'Aplicacao de Clean Code, Clean Architecture e arquitetura hexagonal',
-        'Modelagem e integracao com bancos relacionais e mensageria',
-        'Containerizacao e padronizacao de ambientes com Docker',
-        'Versionamento e colaboracao usando Git',
+        'Desenvolvimento de APIs REST e microserviços em Golang',
+        'Aplicação de Clean Code, Clean Architecture e arquitetura hexagonal',
+        'Modelagem e integração com bancos relacionais e mensageria',
+        'Containerização e padronização de ambientes com Docker',
+        'Versionamento e colaboração usando Git',
         'Foco em performance, escalabilidade e manutenibilidade'
       ]
     },
@@ -65,13 +65,13 @@ export const portfolioData: Portfolio = {
       period: 'Out/2024 - jul/2025',
       featured: true,
       highlights: [
-        'Microservicos com arquitetura hexagonal',
-        'Integracao com Pub/Sub, Redis, MySQL e PostgreSQL',
+        'Microserviços com arquitetura hexagonal',
+        'Integração com Pub/Sub, Redis, MySQL e PostgreSQL',
         'Desenvolvimento de APIs RESTful',
-        'Uso de UberFx para modularizacao e DI',
+        'Uso de UberFx para modularização e DI',
         'Observabilidade com monitoramento e logging',
-        'Otimizacao de performance e concorrencia',
-        'Comunicacao em tempo real via WebSocket/WebRTC'
+        'Otimização de performance e concorrência',
+        'Comunicação em tempo real via WebSocket/WebRTC'
       ]
     },
     {
@@ -84,41 +84,106 @@ export const portfolioData: Portfolio = {
       period: 'Jan/2023 - Abr/2024',
       featured: true,
       highlights: [
-        'Microservicos com arquitetura hexagonal',
+        'Microserviços com arquitetura hexagonal',
         'Pub/Sub, Redis, MySQL, PostgreSQL e Docker',
-        'APIs RESTful com foco em seguranca e eficiencia',
+        'APIs RESTful com foco em segurança e eficiência',
         'UberFx, logging e monitoramento',
-        'Escalabilidade de servicos'
+        'Escalabilidade de serviços'
       ]
     },
     {
       role: 'Background profissional',
-      company: 'Experiencias anteriores',
+      company: 'Experiências anteriores',
       location: 'Bahia',
       period: 'Antes de 2023',
       featured: false,
-      highlights: ['Tecnico de manutencao', 'Auxiliar de contabilidade']
+      highlights: ['Técnico de manutenção', 'Auxiliar de contabilidade']
     }
   ],
   projects: [
     {
-      id: 'instituto-recomecar',
-      title: 'Sistema Web para Gestao de Dados Institucionais',
-      period: 'mar/2024 - abr/2025',
+      id: 'civitas',
+      title: 'Civitas (em desenvolvimento)',
+      period: '2025 - atual',
       context:
-        'Projeto de extensao universitaria (UNINTER) aplicando tecnologia para inclusao social, com rastreabilidade e eficiencia operacional para apoiar a reintegracao social e profissional.',
+        'Plataforma para gestão de comunidades com chat em tempo real, FAQ assistido por IA e fluxo híbrido de atendimento entre automação e suporte humano.',
       challenges: [
-        'Levantamento e analise de requisitos',
-        'Modelagem de dados e estruturacao do banco',
-        'Desenvolvimento em PHP com boas praticas de arquitetura',
-        'Cadastro, validacao e acompanhamento de usuarios',
-        'Logs de auditoria, controle de acesso e protecao de dados sensiveis',
-        'Automacao de processos e padronizacao de fluxos'
+        'Implementação de chat em tempo real com WebSocket e controle de salas públicas/privadas',
+        'Controle de acesso por comunidade e papéis (admin, moderador e membro)',
+        'Fluxo híbrido com IA (Ollama) e escalonamento para atendimento humano',
+        'Ingestão de conhecimento (PDF, CSV, Excel e DOCX) para FAQ assistido',
+        'Auditoria completa de requests e ações administrativas',
+        'Persistência de mensagens em batch para desempenho e rastreabilidade'
       ],
       architectureNotes: [
-        'Controllers para borda HTTP e validacao inicial',
-        'Services para regras de negocio e orquestracao',
-        'Repositories para persistencia e isolamento de banco',
+        'Arquitetura em camadas: Handlers -> Usecases -> Repositories',
+        'Hub WebSocket em memória desacoplado da camada HTTP',
+        'Persistência em PostgreSQL como fonte da verdade',
+        'Autenticação JWT com Firebase Authentication',
+        'Documentação e contratos de API com Swagger'
+      ],
+      stack: [
+        'Golang',
+        'Fiber v2',
+        'WebSocket',
+        'React',
+        'Next.js',
+        'TypeScript',
+        'TailwindCSS',
+        'PostgreSQL',
+        'GORM',
+        'Swagger (swaggo)',
+        'Firebase Authentication',
+        'Ollama',
+        'Arquitetura em camadas'
+      ],
+      assets: [
+        {
+          type: 'image',
+          src: '/projects/civitas-login-page.png',
+          alt: 'Tela de login da plataforma Civitas'
+        },
+        {
+          type: 'image',
+          src: '/projects/civitas-dashboard.png',
+          alt: 'Dashboard da plataforma Civitas em funcionamento'
+        },
+        {
+          type: 'image',
+          src: '/projects/civitas.png',
+          alt: 'Identidade visual do projeto Civitas'
+        },
+        {
+          type: 'diagram',
+          src: '/projects/civitas-arquiteture.png',
+          alt: 'Diagrama de arquitetura em camadas do projeto Civitas'
+        },
+        {
+          type: 'diagram',
+          src: '/projects/civitas-fluxo-dominio.png',
+          alt: 'Fluxo de domínio e eventos do projeto Civitas'
+        }
+      ],
+      emphasis: 'primary'
+    },
+    {
+      id: 'instituto-recomecar',
+      title: 'Sistema Web para Gestão de Dados Institucionais',
+      period: 'mar/2024 - abr/2025',
+      context:
+        'Projeto de extensão universitária (UNINTER) aplicando tecnologia para inclusão social, com rastreabilidade e eficiência operacional para apoiar a reintegração social e profissional.',
+      challenges: [
+        'Levantamento e análise de requisitos',
+        'Modelagem de dados e estruturação do banco',
+        'Desenvolvimento em PHP com boas práticas de arquitetura',
+        'Cadastro, validação e acompanhamento de usuários',
+        'Logs de auditoria, controle de acesso e proteção de dados sensíveis',
+        'Automação de processos e padronização de fluxos'
+      ],
+      architectureNotes: [
+        'Controllers para borda HTTP e validação inicial',
+        'Services para regras de negócio e orquestração',
+        'Repositories para persistência e isolamento de banco',
         'DTOs para contratos claros entre camadas',
         'RBAC para perfis de acesso e trilha de auditoria'
       ],
@@ -140,20 +205,20 @@ export const portfolioData: Portfolio = {
           alt: 'Diagrama simples de arquitetura em camadas do projeto Recomeçar'
         }
       ],
-      emphasis: 'primary'
+      emphasis: 'secondary'
     },
     {
       id: 'go-microservices',
-      title: 'Microservicos em Go (Hexagonal)',
+      title: 'Microserviços em Go (Hexagonal)',
       period: '2023 - 2025',
       context:
-        'Evolucao de backend com foco em independencia de framework, escalabilidade e manutencao orientada a dominio.',
+        'Evolução de backend com foco em independência de framework, escalabilidade e manutenção orientada a domínio.',
       challenges: [
-        'Desacoplamento de dominio com Ports & Adapters',
-        'Integracao de mensageria e bancos com contratos claros',
-        'Containerizacao com Docker e ambiente reproduzivel',
+        'Desacoplamento de domínio com Ports & Adapters',
+        'Integração de mensageria e bancos com contratos claros',
+        'Containerização com Docker e ambiente reproduzível',
         'Observabilidade para suporte a incidentes',
-        'Ajustes de concorrencia para throughput mais alto'
+        'Ajustes de concorrência para throughput mais alto'
       ],
       stack: [
         'Go',
@@ -178,12 +243,12 @@ export const portfolioData: Portfolio = {
       title: 'Real-time Platform (WebSocket/WebRTC)',
       period: '2024 - 2025',
       context:
-        'Implementacao de comunicacao em tempo real para reduzir latencia e melhorar experiencia em fluxos colaborativos.',
+        'Implementação de comunicação em tempo real para reduzir latência e melhorar experiência em fluxos colaborativos.',
       challenges: [
-        'Gerenciamento de conexoes persistentes em escala',
-        'Troca de sinalizacao para estabelecimentos P2P',
-        'Resiliencia a quedas de conexao',
-        'Monitoramento de latencia e qualidade de sessao'
+        'Gerenciamento de conexões persistentes em escala',
+        'Troca de sinalização para estabelecimentos P2P',
+        'Resiliência a quedas de conexão',
+        'Monitoramento de latência e qualidade de sessão'
       ],
       stack: ['WebSocket', 'WebRTC', 'Go', 'Monitoramento'],
       assets: [
@@ -199,7 +264,7 @@ export const portfolioData: Portfolio = {
   skills: [
     {
       title: 'Backend',
-      items: ['Go', 'Microservicos', 'APIs REST']
+      items: ['Go', 'Microserviços', 'APIs REST']
     },
     {
       title: 'Infra/DevOps',
@@ -216,13 +281,22 @@ export const portfolioData: Portfolio = {
     {
       title: 'Real-time',
       items: ['WebSocket', 'WebRTC']
+    },
+    {
+      title: 'IA',
+      items: [
+        'LangChain',
+        'Python para IA',
+        'Fundamentos de Engenharia de IA',
+        'Aplicações orientadas a LLM'
+      ]
     }
   ],
   education: [
     {
       title: 'Bacharelado em Engenharia de Software',
       institution: 'UNINTER',
-      period: 'Em andamento (conclusao prevista: out/2026)'
+      period: 'Em andamento (conclusão prevista: out/2026)'
     },
     {
       title: 'Carreira Engenharia de IA',
@@ -286,7 +360,7 @@ export const portfolioData: Portfolio = {
     },
     {
       title:
-        'Go avancado, financas fullstack com Go/SQLC/Next/React, Go do zero',
+        'Go avançado, finanças full stack com Go/SQLC/Next/React, Go do zero',
       institution: 'Udemy',
       period: 'Cursos livres'
     },

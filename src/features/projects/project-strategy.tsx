@@ -1,12 +1,107 @@
 'use client';
 
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import type { ReactElement } from 'react';
+import { useRef, useState, type ReactElement, type TouchEvent } from 'react';
 import type { ProjectData } from '@/domain/entities/portfolio';
 import { Chip } from '@/components/ui/chip';
 import { ParallaxCard } from '@/components/ui/parallax-card';
 
 type ProjectRenderer = (project: ProjectData) => ReactElement;
+
+function ProjectImagePreview({
+  src,
+  alt,
+  className
+}: {
+  src: string;
+  alt: string;
+  className: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const touchStartY = useRef<number | null>(null);
+
+  const onTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    touchStartY.current = event.touches[0]?.clientY ?? null;
+  };
+
+  const onTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    if (touchStartY.current === null) {
+      return;
+    }
+    const endY = event.changedTouches[0]?.clientY ?? touchStartY.current;
+    const deltaY = touchStartY.current - endY;
+    touchStartY.current = null;
+    if (Math.abs(deltaY) > 70) {
+      setOpen(false);
+    }
+  };
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className={className}
+        aria-label={`Ampliar imagem: ${alt}`}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          width={1200}
+          height={800}
+          className="h-full w-full object-contain"
+        />
+      </button>
+
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-slate-950/85 p-4 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+          >
+            <div className="mx-auto flex h-full w-full max-w-6xl items-center justify-center">
+              <motion.div
+                initial={{ scale: 0.96, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.96, opacity: 0 }}
+                transition={{ duration: 0.18 }}
+                onClick={(event) => event.stopPropagation()}
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+                className="relative w-full overflow-hidden rounded-2xl border border-slate-600/70 bg-slate-900"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-950/70 text-xl font-bold text-white"
+                  aria-label="Fechar imagem ampliada"
+                >
+                  ×
+                </button>
+                <div className="h-[72vh] w-full p-3 sm:h-[80vh]">
+                  <Image
+                    src={src}
+                    alt={alt}
+                    width={1600}
+                    height={1000}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                <p className="pb-3 text-center text-xs font-semibold text-slate-300">
+                  Toque fora, use o X ou arraste para fechar.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </>
+  );
+}
 
 const renderPrimary: ProjectRenderer = (project) => (
   <ParallaxCard>
@@ -46,18 +141,12 @@ const renderPrimary: ProjectRenderer = (project) => (
       </div>
       <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
         {project.assets.map((asset) => (
-          <div
+          <ProjectImagePreview
             key={asset.src}
-            className="flex h-[240px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 dark:border-slate-700 dark:bg-slate-900/40 sm:h-[300px] md:h-[340px] lg:h-[430px] xl:h-[520px]"
-          >
-            <Image
-              src={asset.src}
-              alt={asset.alt}
-              width={640}
-              height={420}
-              className="h-full w-full object-contain"
-            />
-          </div>
+            src={asset.src}
+            alt={asset.alt}
+            className="flex h-[240px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 transition hover:scale-[1.01] dark:border-slate-700 dark:bg-slate-900/40 sm:h-[300px] md:h-[340px] lg:h-[430px] xl:h-[520px]"
+          />
         ))}
       </div>
     </article>
@@ -86,15 +175,28 @@ const renderSecondary: ProjectRenderer = (project) => (
         ))}
       </div>
       {project.assets[0] ? (
-        <div className="flex h-[240px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 dark:border-slate-700 dark:bg-slate-900/40 sm:h-[300px] md:h-[360px] lg:h-[440px] xl:h-[500px]">
-          <Image
-            src={project.assets[0].src}
-            alt={project.assets[0].alt}
-            width={800}
-            height={480}
-            className="h-full w-full object-contain"
-          />
-        </div>
+        <>
+          <div className="flex h-[240px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 dark:border-slate-700 dark:bg-slate-900/40 sm:h-[300px] md:h-[360px] lg:h-[440px] xl:h-[500px]">
+            <ProjectImagePreview
+              src={project.assets[0].src}
+              alt={project.assets[0].alt}
+              className="h-full w-full"
+            />
+          </div>
+
+          {project.assets.length > 1 ? (
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              {project.assets.slice(1, 3).map((asset) => (
+                <ProjectImagePreview
+                  key={asset.src}
+                  src={asset.src}
+                  alt={asset.alt}
+                  className="flex h-[170px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 transition hover:scale-[1.01] dark:border-slate-700 dark:bg-slate-900/40 sm:h-[190px]"
+                />
+              ))}
+            </div>
+          ) : null}
+        </>
       ) : null}
     </article>
   </ParallaxCard>

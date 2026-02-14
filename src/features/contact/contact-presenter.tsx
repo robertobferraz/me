@@ -90,7 +90,7 @@ export function ContactPresenter({ contacts }: { contacts: ContactLink[] }) {
 
     if (!parsed.success) {
       setError(
-        parsed.error.issues[0]?.message ?? 'Revise os dados do formulario'
+        parsed.error.issues[0]?.message ?? 'Revise os dados do formulário'
       );
       return;
     }
@@ -114,7 +114,7 @@ export function ContactPresenter({ contacts }: { contacts: ContactLink[] }) {
       | { message?: string }
       | null;
     setStatus('idle');
-    setError(payload?.message ?? 'Nao foi possivel enviar sua mensagem agora.');
+    setError(payload?.message ?? 'Não foi possível enviar sua mensagem agora.');
   };
 
   const copyEmail = async () => {
