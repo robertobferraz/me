@@ -15,6 +15,7 @@ describe('GetPortfolioUseCase', () => {
     const data = await useCase.execute();
 
     expect(data.hero.name).toBe('Roberto Filho');
-    expect(data.projects).toHaveLength(3);
+    expect(data.projects).toHaveLength(4);
+    expect(data.projects[0]?.id).toBe('civitas');
   });
 });
