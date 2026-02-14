@@ -1,7 +1,20 @@
 import type { Metadata } from 'next';
+import { Manrope, Sora } from 'next/font/google';
 import './globals.css';
 import { SiteHeader } from '@/components/layout/site-header';
 import { SiteFooter } from '@/components/layout/site-footer';
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap'
+});
+
+const sora = Sora({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap'
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://robertofilho.dev'),
@@ -39,7 +52,9 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className="bg-surface text-text antialiased">
+      <body
+        className={`${manrope.variable} ${sora.variable} bg-surface text-text antialiased`}
+      >
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
         <SiteHeader />
         <main>{children}</main>

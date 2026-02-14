@@ -10,13 +10,13 @@ export function ProjectsPresenter({ projects }: { projects: ProjectData[] }) {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 sm:gap-5 xl:grid-cols-12 2xl:gap-6">
-        <Reveal delay={0.04} className="xl:col-span-5 2xl:col-span-4">
-          <ArchitectureInteractive />
-        </Reveal>
+      <Reveal delay={0.04}>
+        <ArchitectureInteractive />
+      </Reveal>
 
+      <div className="grid items-stretch gap-4 sm:gap-5 xl:grid-cols-12 2xl:gap-6">
         {primary ? (
-          <Reveal delay={0.06} className="xl:col-span-7 2xl:col-span-8">
+          <Reveal delay={0.06} className="xl:col-span-12">
             {renderProjectByStrategy(primary)}
           </Reveal>
         ) : null}

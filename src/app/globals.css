@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  font-family: 'Space Grotesk', 'Manrope', 'Segoe UI', sans-serif;
+  font-family: var(--font-body), 'Segoe UI', sans-serif;
   overflow-x: hidden;
   background:
     radial-gradient(circle at 8% 12%, rgba(211, 97, 53, 0.2), transparent 35%),
@@ -37,6 +37,16 @@ body {
     linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0))
       no-repeat,
     var(--surface);
+}
+
+::selection {
+  background: rgba(211, 97, 53, 0.25);
+  color: var(--text);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.6) transparent;
 }
 
 :focus-visible {

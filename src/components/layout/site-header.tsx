@@ -56,24 +56,33 @@ export function SiteHeader() {
 
   return (
     <header
-      className="bg-surface/70 sticky top-0 z-50 border-b border-slate-300/40 backdrop-blur-xl dark:border-slate-700/50"
+      className="sticky top-0 z-50 border-b border-slate-300/40 bg-surface/65 backdrop-blur-xl dark:border-slate-700/50"
       style={{ paddingTop: 'env(safe-area-inset-top)' }}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-        <Link href="/" className="text-base font-bold tracking-wide">
+        <Link href="/" className="text-base font-black tracking-wide">
           Roberto Filho
         </Link>
 
-        <nav aria-label="Navegação principal" className="hidden gap-5 md:flex">
+        <nav
+          aria-label="Navegação principal"
+          className="bg-panel/70 hidden items-center gap-2 rounded-full border border-slate-300/70 p-1 shadow-soft md:flex dark:border-slate-700/70"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium hover:text-accent"
+              className="rounded-full px-3 py-1.5 text-sm font-semibold transition hover:bg-accent/15 hover:text-accent"
             >
               {link.label}
             </Link>
           ))}
+          <Link
+            href="#contato"
+            className="rounded-full bg-accent px-3 py-1.5 text-sm font-bold text-white transition hover:opacity-95"
+          >
+            Falar comigo
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">

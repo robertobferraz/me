@@ -2,12 +2,20 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import { useRef, useState, type ReactElement, type TouchEvent } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ReactElement,
+  type TouchEvent
+} from 'react';
 import type { ProjectData } from '@/domain/entities/portfolio';
 import { Chip } from '@/components/ui/chip';
 import { ParallaxCard } from '@/components/ui/parallax-card';
 
 type ProjectRenderer = (project: ProjectData) => ReactElement;
+const ASSET_FRAME_CLASS =
+  'flex w-full h-[250px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 dark:border-slate-700 dark:bg-slate-900/40 sm:h-[320px] md:h-[380px] lg:h-[440px] xl:h-[500px]';
 
 function ProjectImagePreview({
   src,
@@ -103,9 +111,117 @@ function ProjectImagePreview({
   );
 }
 
+function ProjectAssetCarousel({
+  assets,
+  cardLabel
+}: {
+  assets: ProjectData['assets'];
+  cardLabel: string;
+}) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const isSmallVisual = (asset: ProjectData['assets'][number]) =>
+    asset.type === 'diagram' || asset.src.endsWith('.svg');
+  const showDualLayout =
+    assets.length >= 2 && assets.slice(0, 2).every((asset) => isSmallVisual(asset));
+
+  useEffect(() => {
+    if (assets.length < 2 || isHovering) {
+      return;
+    }
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % assets.length);
+    }, 3600);
+    return () => window.clearInterval(interval);
+  }, [assets.length, isHovering]);
+
+  if (!assets.length) {
+    return null;
+  }
+
+  const current = assets[activeIndex];
+
+  return (
+    <div
+      className="space-y-3"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      {showDualLayout ? (
+        <div className="grid gap-3 sm:grid-cols-2">
+          {assets.slice(0, 2).map((asset) => (
+            <ProjectImagePreview
+              key={asset.src}
+              src={asset.src}
+              alt={asset.alt}
+              className={ASSET_FRAME_CLASS}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="mx-auto w-full max-w-5xl">
+          <ProjectImagePreview
+            src={current.src}
+            alt={current.alt}
+            className={ASSET_FRAME_CLASS}
+          />
+        </div>
+      )}
+
+      {assets.length > 1 && !showDualLayout ? (
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+            {cardLabel} · imagem {activeIndex + 1}/{assets.length}
+          </p>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() =>
+                setActiveIndex((currentIndex) =>
+                  currentIndex === 0 ? assets.length - 1 : currentIndex - 1
+                )
+              }
+              className="rounded-md border border-slate-300/80 px-2 py-1 text-xs font-bold dark:border-slate-700/70"
+              aria-label="Imagem anterior"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                setActiveIndex((currentIndex) => (currentIndex + 1) % assets.length)
+              }
+              className="rounded-md border border-slate-300/80 px-2 py-1 text-xs font-bold dark:border-slate-700/70"
+              aria-label="Próxima imagem"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {assets.length > 1 && !showDualLayout ? (
+        <div className="flex items-center justify-center gap-1.5">
+          {assets.map((asset, index) => (
+            <button
+              key={asset.src}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              className={`h-2 rounded-full transition ${
+                index === activeIndex ? 'w-6 bg-accent' : 'w-2 bg-slate-400/60'
+              }`}
+              aria-label={`Selecionar imagem ${index + 1}`}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 const renderPrimary: ProjectRenderer = (project) => (
   <ParallaxCard>
-    <article className="card-entry bg-panel/85 rounded-2xl border border-slate-300/80 p-4 shadow-soft backdrop-blur dark:border-slate-700/80 sm:p-5 lg:p-6">
+    <article className="card-entry from-panel/90 to-panel/70 flex h-full flex-col rounded-2xl border border-slate-300/80 bg-gradient-to-br p-4 shadow-soft backdrop-blur dark:border-slate-700/80 sm:p-5 lg:p-6">
       <header className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
@@ -139,15 +255,8 @@ const renderPrimary: ProjectRenderer = (project) => (
           <Chip key={item} label={item} />
         ))}
       </div>
-      <div className="grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
-        {project.assets.map((asset) => (
-          <ProjectImagePreview
-            key={asset.src}
-            src={asset.src}
-            alt={asset.alt}
-            className="flex h-[240px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 transition hover:scale-[1.01] dark:border-slate-700 dark:bg-slate-900/40 sm:h-[300px] md:h-[340px] lg:h-[430px] xl:h-[520px]"
-          />
-        ))}
+      <div className="mt-auto pt-2">
+        <ProjectAssetCarousel assets={project.assets} cardLabel={project.title} />
       </div>
     </article>
   </ParallaxCard>
@@ -155,7 +264,7 @@ const renderPrimary: ProjectRenderer = (project) => (
 
 const renderSecondary: ProjectRenderer = (project) => (
   <ParallaxCard>
-    <article className="card-entry bg-panel/85 rounded-2xl border border-slate-300/80 p-4 shadow-soft backdrop-blur dark:border-slate-700/80 sm:p-5 lg:p-6">
+    <article className="card-entry from-panel/90 to-panel/70 flex h-full flex-col rounded-2xl border border-slate-300/80 bg-gradient-to-br p-4 shadow-soft backdrop-blur dark:border-slate-700/80 sm:p-5 lg:p-6">
       <header className="mb-3">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
           Case Study Técnico
@@ -174,30 +283,9 @@ const renderSecondary: ProjectRenderer = (project) => (
           <Chip key={item} label={item} />
         ))}
       </div>
-      {project.assets[0] ? (
-        <>
-          <div className="flex h-[240px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 dark:border-slate-700 dark:bg-slate-900/40 sm:h-[300px] md:h-[360px] lg:h-[440px] xl:h-[500px]">
-            <ProjectImagePreview
-              src={project.assets[0].src}
-              alt={project.assets[0].alt}
-              className="h-full w-full"
-            />
-          </div>
-
-          {project.assets.length > 1 ? (
-            <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              {project.assets.slice(1, 3).map((asset) => (
-                <ProjectImagePreview
-                  key={asset.src}
-                  src={asset.src}
-                  alt={asset.alt}
-                  className="flex h-[170px] items-center justify-center overflow-hidden rounded-xl border border-slate-300 bg-slate-100/70 p-1.5 transition hover:scale-[1.01] dark:border-slate-700 dark:bg-slate-900/40 sm:h-[190px]"
-                />
-              ))}
-            </div>
-          ) : null}
-        </>
-      ) : null}
+      <div className="mt-auto pt-2">
+        <ProjectAssetCarousel assets={project.assets} cardLabel={project.title} />
+      </div>
     </article>
   </ParallaxCard>
 );

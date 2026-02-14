@@ -36,7 +36,7 @@ export const portfolioData: Portfolio = {
   },
   about: {
     summary:
-      'Profissional com foco em backend, desenvolvimento de microserviços e arquitetura hexagonal (Ports & Adapters). Experiência com mensageria, bancos relacionais e não relacionais, Docker, observabilidade, otimização de performance e soluções real-time com WebSocket/WebRTC.'
+      'Engenheiro de software com foco em backend e experiência prática na construção de APIs, microserviços e sistemas em tempo real. Atuo com arquitetura hexagonal (Ports & Adapters), mensageria, bancos relacionais, Docker e observabilidade, mantendo atenção constante em performance, segurança e manutenibilidade.'
   },
   experiences: [
     {

@@ -101,7 +101,7 @@ export function ArchitectureInteractive() {
   };
 
   return (
-    <article className="bg-panel/85 rounded-2xl border border-slate-300/80 p-4 shadow-soft backdrop-blur dark:border-slate-700/80 md:p-6">
+    <article className="from-panel/90 to-panel/70 rounded-2xl border border-slate-300/80 bg-gradient-to-br p-4 shadow-soft backdrop-blur dark:border-slate-700/80 md:p-6">
       <header className="mb-4 space-y-3">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -163,7 +163,7 @@ export function ArchitectureInteractive() {
         </div>
       </header>
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_1.1fr]">
+      <div className="grid gap-4 xl:grid-cols-[1fr_1.06fr]">
         <div className="rounded-xl border border-slate-300/70 bg-slate-50/40 p-3 dark:border-slate-700/70 dark:bg-slate-900/30">
           <div className="relative mx-auto max-w-[420px] py-3">
             {layers.map((layer, index) => {
@@ -204,7 +204,7 @@ export function ArchitectureInteractive() {
                         Etapa {index + 1}
                       </p>
                       <p className="text-sm font-extrabold">{layer.title}</p>
-                      <p className="mt-1 text-xs text-muted">
+                      <p className="mt-1 text-[11px] leading-5 text-muted sm:text-xs">
                         {layer.description}
                       </p>
                     </div>

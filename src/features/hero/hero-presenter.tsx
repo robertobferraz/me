@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import type { ContactLink, HeroData } from '@/domain/entities/portfolio';
 import Image from 'next/image';
 import { LinkButton } from '@/components/ui/link-button';
@@ -76,7 +79,7 @@ export function HeroPresenter({ hero }: { hero: HeroData }) {
       <div className="float-orb float-orb--two" aria-hidden="true" />
 
       <Reveal
-        className="card-entry relative z-10 space-y-5 sm:space-y-6"
+        className="card-entry bg-panel/55 relative z-10 space-y-5 rounded-3xl border border-slate-300/70 p-5 shadow-soft backdrop-blur-md sm:space-y-6 sm:p-7 dark:border-slate-700/70"
         delay={0.05}
       >
         <div className="flex flex-col gap-4 sm:gap-5">
@@ -85,11 +88,11 @@ export function HeroPresenter({ hero }: { hero: HeroData }) {
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <h1 className="text-[clamp(2rem,8vw,4.6rem)] font-black leading-tight tracking-tight">
+            <h1 className="text-[clamp(2.1rem,8vw,4.8rem)] font-black leading-[0.96] tracking-tight [font-family:var(--font-display)]">
               {hero.name}
             </h1>
 
-            <div className="bg-panel/80 border-accent/40 h-28 w-28 shrink-0 overflow-hidden rounded-2xl border sm:h-36 sm:w-36 md:h-40 md:w-40">
+            <div className="h-28 w-28 shrink-0 overflow-hidden rounded-2xl border-2 border-accent/35 shadow-[0_0_0_6px_rgba(255,255,255,0.08)] sm:h-36 sm:w-36 md:h-40 md:w-40">
               <Image
                 src="/brands/roberto-filho.jpeg"
                 alt="Foto de Roberto Filho"
@@ -111,12 +114,14 @@ export function HeroPresenter({ hero }: { hero: HeroData }) {
 
         <div className="flex flex-wrap gap-2">
           {heroHighlights.map((item) => (
-            <span
+            <motion.span
               key={item}
+              whileHover={{ y: -2, scale: 1.03 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 22 }}
               className="bg-panel/70 rounded-full border border-slate-400/45 px-3 py-1 text-xs font-semibold uppercase tracking-wide"
             >
               {item}
-            </span>
+            </motion.span>
           ))}
         </div>
 
@@ -140,11 +145,14 @@ export function HeroPresenter({ hero }: { hero: HeroData }) {
           </p>
           <div className="flex flex-wrap items-center gap-3">
             {hero.contacts.map((contact) => (
-              <a
+              <motion.a
                 key={contact.label}
                 href={contact.href}
                 target={contact.href.startsWith('http') ? '_blank' : undefined}
                 rel={contact.href.startsWith('http') ? 'noreferrer' : undefined}
+                whileHover={{ y: -2, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 330, damping: 20 }}
                 className="bg-panel/90 group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300/70 transition hover:border-accent hover:text-accent dark:border-slate-700/70"
                 aria-label={contact.label}
                 title={contact.label}
@@ -153,7 +161,7 @@ export function HeroPresenter({ hero }: { hero: HeroData }) {
                 <span className="pointer-events-none absolute -top-9 left-1/2 hidden -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-1 text-[11px] font-semibold text-white group-hover:block">
                   {contact.label}
                 </span>
-              </a>
+              </motion.a>
             ))}
           </div>
         </div>

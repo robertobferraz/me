@@ -23,7 +23,10 @@ export default async function HomePage() {
         projectCount={portfolio.projects.length}
         skillCategoryCount={portfolio.skills.length}
       />
-      <Section id="sobre" title="Sobre">
+      <Section
+        id="sobre"
+        title="Sobre"
+      >
         <AboutContainer about={portfolio.about} />
       </Section>
       <Section id="experiencia" title="Experiência">
