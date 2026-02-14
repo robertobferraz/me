@@ -15,6 +15,7 @@ Portfólio em produção com foco em backend e arquitetura, construído com Next
 
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
@@ -33,7 +34,8 @@ npm run build       # build de producao
 ## Decisões de arquitetura
 
 - Estrutura por camadas/concerns:
-  - `src/app`: rotas, metadata, robots, sitemap e API mock
+- `src/app`: rotas, metadata, robots, sitemap e API mock
+  - API de contato com provider SMTP real (configurável por env)
   - `src/components`: componentes reutilizáveis de layout e UI
   - `src/features`: módulos por feature usando container/presenter
   - `src/domain`: entidades, interfaces e usecases
@@ -60,6 +62,31 @@ Edite o arquivo `src/data/portfolio.ts`.
 - Metadata + OpenGraph + `sitemap.ts` + `robots.ts`
 - `next/image` para assets de projetos
 - Componentes server-first; client apenas onde necessário (tema e formulário)
+
+## Envio de e-mail real
+
+O formulário de contato usa SMTP em produção.
+
+Variáveis necessárias:
+
+- `CONTACT_PROVIDER` (`smtp` ou `mock`)
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_SECURE` (`true` ou `false`)
+- `SMTP_USER`
+- `SMTP_PASS`
+- `CONTACT_EMAIL_FROM`
+- `CONTACT_EMAIL_TO`
+- `CONTACT_MIN_INTERVAL_MS` (cooldown entre envios na mesma sessão)
+- `CONTACT_SESSION_WINDOW_MS` (janela de tempo da sessão)
+- `CONTACT_SESSION_MAX_MESSAGES` (máximo de envios por sessão na janela)
+- `CONTACT_SESSION_COOKIE_MAX_AGE_SEC` (persistência da sessão em cookie)
+
+Para testar sem envio real, use:
+
+```bash
+CONTACT_PROVIDER=mock
+```
 
 ## Estrutura do projeto
 

@@ -6,7 +6,8 @@ describe('contactSchema', () => {
     const result = contactSchema.safeParse({
       name: 'Roberto Filho',
       email: 'zferraz.rf@gmail.com',
-      message: 'Mensagem com tamanho suficiente para validacao.'
+      message: 'Mensagem com tamanho suficiente para validacao.',
+      website: ''
     });
 
     expect(result.success).toBe(true);
@@ -17,6 +18,17 @@ describe('contactSchema', () => {
       name: 'Ro',
       email: 'sem-email',
       message: 'curta'
+    });
+
+    expect(result.success).toBe(false);
+  });
+
+  it('rejeita payload com honeypot preenchido', () => {
+    const result = contactSchema.safeParse({
+      name: 'Roberto Filho',
+      email: 'zferraz.rf@gmail.com',
+      message: 'Mensagem com tamanho suficiente para validacao.',
+      website: 'https://spam.example.com'
     });
 
     expect(result.success).toBe(false);

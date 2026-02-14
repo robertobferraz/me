@@ -74,7 +74,8 @@ export function ContactPresenter({ contacts }: { contacts: ContactLink[] }) {
   const [form, setForm] = useState<ContactInput>({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    website: ''
   });
   const [error, setError] = useState<string>('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
@@ -105,12 +106,15 @@ export function ContactPresenter({ contacts }: { contacts: ContactLink[] }) {
 
     if (response.ok) {
       setStatus('success');
-      setForm({ name: '', email: '', message: '' });
+      setForm({ name: '', email: '', message: '', website: '' });
       return;
     }
 
+    const payload = (await response.json().catch(() => null)) as
+      | { message?: string }
+      | null;
     setStatus('idle');
-    setError('Nao foi possivel enviar sua mensagem agora.');
+    setError(payload?.message ?? 'Nao foi possivel enviar sua mensagem agora.');
   };
 
   const copyEmail = async () => {
@@ -162,6 +166,24 @@ export function ContactPresenter({ contacts }: { contacts: ContactLink[] }) {
       >
         <h3 className="mb-3 text-lg font-extrabold">Enviar mensagem</h3>
         <div className="space-y-3">
+          <div className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden opacity-0">
+            <label htmlFor="website" aria-hidden="true">
+              Website
+            </label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              value={form.website ?? ''}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, website: e.target.value }))
+              }
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+          </div>
+
           <label className="block text-sm font-semibold">
             Nome
             <input
@@ -202,7 +224,7 @@ export function ContactPresenter({ contacts }: { contacts: ContactLink[] }) {
         ) : null}
         {status === 'success' ? (
           <p className="mt-3 text-sm font-semibold text-emerald-600">
-            Mensagem enviada com sucesso (mock).
+            Mensagem enviada com sucesso.
           </p>
         ) : null}
         <button
