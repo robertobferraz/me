@@ -1,0 +1,18 @@
+# dependencies
+/node_modules
+
+# next
+/.next
+/out
+
+# tests
+/coverage
+/playwright-report
+/test-results
+
+# misc
+.DS_Store
+*.log
+
+# env
+.env*

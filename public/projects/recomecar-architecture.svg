@@ -1,0 +1,22 @@
+<svg width="900" height="420" viewBox="0 0 900 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama em camadas com controllers, services, repositories e banco de dados">
+  <rect width="900" height="420" fill="#F6EFE3"/>
+  <rect x="52" y="80" width="170" height="76" rx="12" fill="#CA6702"/>
+  <text x="137" y="124" text-anchor="middle" fill="white" font-family="Arial" font-size="18">Controllers</text>
+  <rect x="268" y="80" width="170" height="76" rx="12" fill="#E9A03B"/>
+  <text x="353" y="124" text-anchor="middle" fill="#1f2937" font-family="Arial" font-size="18">DTOs/Validação</text>
+  <rect x="484" y="80" width="170" height="76" rx="12" fill="#0A9396"/>
+  <text x="569" y="124" text-anchor="middle" fill="white" font-family="Arial" font-size="18">Services</text>
+  <rect x="700" y="80" width="150" height="76" rx="12" fill="#005F73"/>
+  <text x="775" y="124" text-anchor="middle" fill="white" font-family="Arial" font-size="18">RBAC</text>
+
+  <rect x="190" y="248" width="200" height="90" rx="12" fill="#94D2BD"/>
+  <text x="290" y="297" text-anchor="middle" fill="#1f2937" font-family="Arial" font-size="18">Repositories</text>
+  <rect x="450" y="248" width="260" height="90" rx="12" fill="#E9D8A6"/>
+  <text x="580" y="297" text-anchor="middle" fill="#1f2937" font-family="Arial" font-size="18">MySQL + Auditoria</text>
+
+  <path d="M222 118H268" stroke="#1f2937" stroke-width="3"/>
+  <path d="M438 118H484" stroke="#1f2937" stroke-width="3"/>
+  <path d="M654 118H700" stroke="#1f2937" stroke-width="3"/>
+  <path d="M569 156V248" stroke="#1f2937" stroke-width="3"/>
+  <path d="M390 293H450" stroke="#1f2937" stroke-width="3"/>
+</svg>

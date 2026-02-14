@@ -1,0 +1,39 @@
+<svg width="1400" height="760" viewBox="0 0 1400 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tela de cadastro de usuário do sistema Recomeçar">
+  <rect width="1400" height="760" fill="#eef2f7"/>
+  <rect x="0" y="0" width="240" height="760" fill="#ffffff"/>
+  <text x="40" y="92" font-family="Arial" font-size="52" font-weight="700" fill="#111827">Recomeçar</text>
+  <rect x="24" y="160" width="192" height="42" rx="8" fill="#f3f4f6"/>
+  <text x="44" y="188" font-family="Arial" font-size="26" fill="#111827">Página inicial</text>
+  <rect x="24" y="214" width="192" height="42" rx="8" fill="#e5e7eb"/>
+  <text x="44" y="242" font-family="Arial" font-size="26" fill="#111827">Usuários</text>
+  <rect x="24" y="268" width="192" height="42" rx="8" fill="#f3f4f6"/>
+  <text x="44" y="296" font-family="Arial" font-size="26" fill="#111827">Egressos</text>
+
+  <rect x="252" y="18" width="1128" height="724" rx="14" fill="#ffffff" stroke="#d1d5db"/>
+  <text x="286" y="78" font-family="Arial" font-size="40" font-weight="700" fill="#111827">Cadastro Pessoa</text>
+
+  <rect x="286" y="102" width="470" height="44" rx="8" fill="#f9fafb" stroke="#d1d5db"/>
+  <text x="304" y="132" font-family="Arial" font-size="25" fill="#6b7280">Status: Cadastro externo</text>
+
+  <rect x="286" y="168" width="260" height="44" rx="8" fill="#f3f4f6"/>
+  <text x="304" y="197" font-family="Arial" font-size="25" fill="#111827">Dados pessoais</text>
+  <text x="574" y="197" font-family="Arial" font-size="25" fill="#2563eb">Acompanhamento</text>
+
+  <rect x="286" y="224" width="470" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="286" y="282" width="470" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="286" y="340" width="470" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="286" y="398" width="470" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="286" y="456" width="470" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="286" y="514" width="470" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="286" y="572" width="470" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+
+  <rect x="786" y="224" width="560" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="786" y="282" width="560" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="786" y="340" width="560" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="786" y="398" width="560" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="786" y="456" width="560" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="786" y="514" width="560" height="48" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+
+  <rect x="286" y="642" width="112" height="46" rx="8" fill="#2563eb"/>
+  <text x="326" y="672" font-family="Arial" font-size="28" fill="#ffffff">Salvar</text>
+</svg>
