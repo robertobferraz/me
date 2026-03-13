@@ -208,6 +208,113 @@ export const portfolioData: Portfolio = {
       emphasis: 'secondary'
     },
     {
+      id: 'italo-esdras',
+      title: 'Plataforma Italo Esdras',
+      period: 'Case full stack',
+      context:
+        'Aplicação web em Next.js para site institucional, área do aluno e painel administrativo, integrada a um backend em FastAPI com pagamentos, autenticação JWT e operações acadêmicas.',
+      challenges: [
+        'Construção de múltiplas áreas de produto: site, aluno, professor e administração',
+        'Integração entre frontend Next.js e backend FastAPI com autenticação por cookie JWT',
+        'Dashboards administrativos e operacionais com foco em UX e responsividade',
+        'Fluxos de pagamento com checkout, webhook e confirmação server-to-server',
+        'Cobertura de responsividade com Playwright e validação de fluxos críticos'
+      ],
+      architectureNotes: [
+        'Frontend em Next.js App Router com separação por domínio em components/admin e components/student',
+        'Backend em FastAPI + SQLAlchemy com rotas por domínio e PostgreSQL',
+        'Middleware no frontend para proteção de áreas autenticadas',
+        'Integração com SMTP para envio de credenciais e lembretes',
+        'Empacotamento desktop e documentação técnica do sistema'
+      ],
+      stack: [
+        'Next.js 15',
+        'React 19',
+        'TypeScript',
+        'TailwindCSS',
+        'Recharts',
+        'FastAPI',
+        'SQLAlchemy',
+        'PostgreSQL',
+        'JWT',
+        'SMTP',
+        'Playwright',
+        'Docker'
+      ],
+      assets: [
+        {
+          type: 'image',
+          src: '/projects/home.png',
+          alt: 'Tela inicial da plataforma Italo Esdras'
+        },
+        {
+          type: 'image',
+          src: '/projects/admin-dashboard.png',
+          alt: 'Dashboard administrativo da plataforma Italo Esdras'
+        },
+        {
+          type: 'image',
+          src: '/projects/professor-dashboard.png',
+          alt: 'Dashboard do professor na plataforma Italo Esdras'
+        },
+        {
+          type: 'image',
+          src: '/projects/aluno-tablaturas.png',
+          alt: 'Área do aluno com tablaturas na plataforma Italo Esdras'
+        }
+      ],
+      emphasis: 'secondary'
+    },
+    {
+      id: 'botmusica',
+      title: 'Botmusica (music-bot + bm-provider)',
+      period: 'Case backend / automação',
+      context:
+        'Ecossistema para reprodução de música no Discord com comandos slash, fila persistente, painel web com OAuth2 e um provider HTTP externo para contornar limitações da Web API do Spotify em playlists.',
+      challenges: [
+        'Orquestração de reprodução por servidor com fila persistente e comandos slash',
+        'Busca, autocomplete e reprodução nativa com yt-dlp e ffmpeg',
+        'Painel web administrativo com OAuth2 do Discord e RBAC para operação do bot',
+        'Integração com provider HTTP externo para fallback de playlists do Spotify',
+        'Suporte a SQLite no fluxo local e PostgreSQL em produção',
+        'Empacotamento com Docker Compose e manifestos Kubernetes para operação'
+      ],
+      architectureNotes: [
+        'Separação entre o bot principal e o bm-provider por contrato HTTP explícito',
+        'Camada de persistência com backends intercambiáveis para SQLite ou PostgreSQL',
+        'Módulos de comandos, playback e web panel organizados por responsabilidade',
+        'Painel administrativo com autenticação Discord OAuth2 e papéis admin/dj/viewer',
+        'Estrutura pronta para execução local, containerizada e em Kubernetes'
+      ],
+      stack: [
+        'Python 3.11',
+        'discord.py',
+        'yt-dlp',
+        'ffmpeg',
+        'SQLite',
+        'PostgreSQL',
+        'OAuth2',
+        'RBAC',
+        'HTTP Provider',
+        'Docker Compose',
+        'Kubernetes',
+        'Pytest'
+      ],
+      assets: [
+        {
+          type: 'diagram',
+          src: '/projects/botmusica-architecture.png',
+          alt: 'Arquitetura do ecossistema Botmusica com bot principal, painel web e provider externo'
+        },
+        {
+          type: 'diagram',
+          src: '/projects/botmusica-flow.png',
+          alt: 'Fluxo de resolução de playlists do Spotify com fallback via bm-provider'
+        }
+      ],
+      emphasis: 'secondary'
+    },
+    {
       id: 'go-microservices',
       title: 'Microserviços em Go (Hexagonal)',
       period: '2023 - 2025',
